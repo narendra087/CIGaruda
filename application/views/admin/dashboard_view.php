@@ -124,13 +124,13 @@ include('connection/conn.php');
                   $cc2=mysqli_query($con, "SELECT * FROM cc_program where status IN ('Default', 'Active')");
                   $count2=mysqli_num_rows($cc2);
                   ?>
-                            <div class="m-b-md">
+                            <!-- <div class="m-b-md">
                                 <i class="fa fa-bell fa-4x"></i>
                                 <h1 class="m-xs"><?php echo $count?></h1>
                                 <h3 class="font-bold no-margins">
                                     Culture Program Aktif
                                 </h3>
-                            </div>
+                            </div> -->
                         </div>  
                 </div>
 
