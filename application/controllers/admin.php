@@ -22,38 +22,40 @@ class admin extends CI_Controller {
   {
   $hehe  = $this->model_users->rata2construct();
   $unit=$this->session->userdata('admin_username');
-  $this->load->view('header2');  
-   $this->load->view('admin/corporate');
-  $this->load->view('footer');
+  
+   // $this->load->view('admin/corporate');
+  
 
-  // $data['jawa'] = $this->model_admin->listjawa(); 
-  //   $data['jakarta'] = $this->model_admin->listjakarta(); 
-  //   $data['kalimantan'] = $this->model_admin->listkalimantan(); 
-  //   $data['sumatera'] = $this->model_admin->listsumatra();  
-  //   $data['HO'] = $this->model_admin->listho(); 
-  //   $data['progres'] = $this->model_admin->progresHO();
-  //   $data['progresbo'] = $this->model_admin->progresBO();
-  //   $data['progresvparea'] = $this->model_admin->progresVPAREA();
-  //   $data['progrescorporate'] = $this->model_admin->progrescorporate();
-  //   $data['progreshead'] = $this->model_admin->progresHead();
-  //   $data['progresbranch'] = $this->model_admin->progresBranch();
+    $data['jawa'] = $this->model_admin->listjawa(); 
+    $data['jakarta'] = $this->model_admin->listjakarta(); 
+    $data['kalimantan'] = $this->model_admin->listkalimantan(); 
+    $data['sumatera'] = $this->model_admin->listsumatra();  
+    $data['HO'] = $this->model_admin->listho(); 
+    $data['progres'] = $this->model_admin->progresHO();
+    $data['progresbo'] = $this->model_admin->progresBO();
+    $data['progresvparea'] = $this->model_admin->progresVPAREA();
+    $data['progrescorporate'] = $this->model_admin->progrescorporate();
+    $data['progreshead'] = $this->model_admin->progresHead();
+    $data['progresbranch'] = $this->model_admin->progresBranch();
 
-  //   $bobot['bobot'] = $this->model_admin->bobot()->result();
-  //   foreach ($bobot['bobot'] as $b) {
-  //     $data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
-  //   }
-  //   foreach ($bobot['bobot'] as $a) {
-  //     $data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
-  //   }
-  //   $data['programho'] = $this->model_user->program_unitho();
-  //   $data['programjkt'] = $this->model_user->program_unitjkt();
-  //   $data['programkal'] = $this->model_user->program_unitkal();
-  //   $data['programsum'] = $this->model_user->program_unitsum();
-  //   $data['programjaw'] = $this->model_user->program_unitjaw();
-  //   //$data['baru_warrior'] = $this->model_users->baru_warrior();
+    $bobot['bobot'] = $this->model_admin->bobot()->result();
+    foreach ($bobot['bobot'] as $b) {
+      $data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+    }
+    foreach ($bobot['bobot'] as $a) {
+      $data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+    }
+    $data['programho'] = $this->model_user->program_unitho();
+    $data['programjkt'] = $this->model_user->program_unitjkt();
+    $data['programkal'] = $this->model_user->program_unitkal();
+    $data['programsum'] = $this->model_user->program_unitsum();
+    $data['programjaw'] = $this->model_user->program_unitjaw();
+    //$data['baru_warrior'] = $this->model_users->baru_warrior();
 
-  //   //print_r($data['progres']);exit(); 
-  //   $this->load->view('admin/dashboard_view',$data);
+    //print_r($data['progres']);exit(); 
+    $this->load->view('header2');  
+    $this->load->view('admin/dashboard_view',$data);
+    //$this->load->view('footer');
 
   }
 

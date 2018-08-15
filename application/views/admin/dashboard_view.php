@@ -5,7 +5,7 @@ include('connection/conn.php');
 <!DOCTYPE html>
 <html>
 
-<head>
+<!-- <head> -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@ include('connection/conn.php');
 
     <title>Garuda Indonesia | Dashboard</title>
 
-    <link href="<?php echo base_url()?>css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url()?>css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/gi.ico">
     <link href="<?php echo base_url()?>font-awesome/css/font-awesome.css" rel="stylesheet">
 
@@ -24,9 +24,9 @@ include('connection/conn.php');
     <link href="<?php echo base_url()?>js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
     <link href="<?php echo base_url()?>css/animate.css" rel="stylesheet">
-    <link href="<?php echo base_url()?>css/style.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url()?>css/style.css" rel="stylesheet"> -->
 
-</head>
+<!-- </head> -->
 
 <body>
     <div id="wrapper">
