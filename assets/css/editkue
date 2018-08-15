@@ -1,0 +1,15 @@
+.th_No {
+	width: 5%;
+}
+
+.th_Kue {
+	width: 70%;
+}
+
+.th_Cons {
+	width: 10%;
+}
+
+.title_tanpa_header {
+	padding: 20px;
+}
