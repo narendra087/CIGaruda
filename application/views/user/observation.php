@@ -226,7 +226,7 @@
                     <h5><strong>Observation</strong> <!-- "PROGRAM SINCERITY" --></h5>
                 </div>
 
-                <div class="x-content">
+                <div class="col-lg-12 x-content">
                     <form method="POST" action="<?php echo base_url();?>cont_ondes/nilai" role="form">
                         <table class="table table-striped jambo_table bulk_action" >
                         <!-- <table class="table table-striped table-bordered table-hover dataTables-example" > -->
@@ -235,7 +235,7 @@
                                     <th><h5><center>Indikator</center></h5></th>
                                     <th><h5><center>Metode</center></h5></th>
 
-                                    <th style="width: 50%;">
+                                    <th style="width: 25%;">
                                         <h5><center>Penilaian</center></h5>
 
                                     </th>
@@ -268,8 +268,8 @@
                                 <?php $n=0; $j=0; foreach($pertanyaan as $value) : $n++; ?>                                
                                 
                                  <tr class="gradeX">
-                                    <td class="text-center" style="width: 25%;"><h5><?php echo $value->pertanyaan ?></h5></td>
-                                    <td style=" width: 25%"><h5><?php echo $value->metode ?></h5></td>
+                                    <td class="text-center" style="width: 35%;"><h5><?php echo $value->pertanyaan ?></h5></td>
+                                    <td style=" width: 35%"><h5><?php echo $value->metode ?></h5></td>
                                     <!--style="width: 60%;"-->
 
                               <td class="six">
@@ -323,6 +323,12 @@
         </div>
     </div>
    </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12" align="center">
+        <img src="<?php echo base_url()?>/indikator.png">
+      </div>
     </div>
 
 <!-- footer content -->
