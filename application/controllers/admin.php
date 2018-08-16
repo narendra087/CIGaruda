@@ -57,7 +57,7 @@ class admin extends CI_Controller {
     //print_r($data['progres']);exit(); 
     $this->load->view('header2');  
     $this->load->view('admin/dashboard_view',$data);
-    //$this->load->view('footer');
+    $this->load->view('footer');
 
   }
 
