@@ -72,7 +72,7 @@ include('connection/conn.php');
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
-                <div id="echart_gauge" style="height:370px;"></div>
+                <div id="ardojing" style="height:370px;"></div>
                 <div style="text-align:center">
                   
                 </div>
@@ -87,7 +87,7 @@ include('connection/conn.php');
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
-                <div id="echart_gauge2" style="height:370px;"></div>
+                <div id="ardojing2" style="height:370px;"></div>
                 <div style="text-align:center">
                   
                 </div>
@@ -102,7 +102,7 @@ include('connection/conn.php');
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
-                <div id="echart_gauge3" style="height:370px;"></div>
+                <div id="ardojing3" style="height:370px;"></div>
                 <div style="text-align:center">
                   
                 </div>
@@ -1277,7 +1277,7 @@ include('connection/conn.php');
       }
     };
 
-    var echartGauge = echarts.init(document.getElementById('echart_gauge'), theme);
+    var echartGauge = echarts.init(document.getElementById('ardojing'), theme);
 
     echartGauge.setOption({
       tooltip: {
@@ -1377,7 +1377,7 @@ include('connection/conn.php');
 <?php for ($i=1; $i <=9 ; $i++) { ?>
 <script type="text/javascript">
         //GAUGE CHART//
-        var dom<?php echo $i?> = document.getElementById("echart_gauge<?php echo $i?>");
+        var dom<?php echo $i?> = document.getElementById("ardojing<?php echo $i?>");
         var myChart<?php echo $i?> = echarts.init(dom<?php echo $i?>);
         var app = {};
         option = null;
@@ -1491,7 +1491,7 @@ var theme2 = {
       }
     };
 
-    var echartGauge2 = echarts.init(document.getElementById('echart_gauge2'), theme2);
+    var echartGauge2 = echarts.init(document.getElementById('ardojing2'), theme2);
 
     echartGauge2.setOption({
       tooltip: {
@@ -1590,7 +1590,7 @@ var theme2 = {
 <?php for ($i=1; $i <=9 ; $i++) { ?>
     <script type="text/javascript">
         //GAUGE CHART//
-        var dom<?php echo $i?> = document.getElementById("echart_gauge2<?php echo $i?>");
+        var dom<?php echo $i?> = document.getElementById("ardojing2<?php echo $i?>");
         var myChart<?php echo $i?> = echarts.init(dom<?php echo $i?>);
         var app = {};
         option = null;
@@ -1653,7 +1653,7 @@ var theme2 = {
 
 <script>
 
-var echartGauge3 = echarts.init(document.getElementById('echart_gauge3'), theme);
+var echartGauge3 = echarts.init(document.getElementById('ardojing3'), theme);
 
     echartGauge3.setOption({
       tooltip: {

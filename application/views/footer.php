@@ -30,7 +30,7 @@
     <!-- jQuery -->
     <script src="<?php echo base_url();?>/assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?php echo base_url();?>/assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>/assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>   iini
     <!-- FastClick -->
     <script src="<?php echo base_url();?>/assets/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->

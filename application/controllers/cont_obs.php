@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class observation extends CI_Controller
+class cont_obs extends CI_Controller
 {
  
     public function __construct()
@@ -19,7 +19,7 @@ class observation extends CI_Controller
         $data['pertanyaan']  = $this->model_users->list_obs();
         // $data['metode']  = $this->model_users->list_metode_obs();
         $data['varconstruct']  = $this->model_users->type_construct();
-        $this->load->view('user/observation', $data);
+        $this->load->view('user/view_obs', $data);
 
 
     // print_r($data['id_kuesioner']);

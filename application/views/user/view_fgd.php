@@ -104,11 +104,9 @@
                     <li>
                         <a href="<?php echo base_url()?>cont_wwcr/index"><i class="fa fa-check"></i> <span class="nav-label">Interview</span></a>
                     </li>
+                    
                     <li>
-                        <a href="<?php echo base_url()?>cont_ondes/index"><i class="fa fa-user"></i> <span class="nav-label">On Desk</span></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url()?>observation/index"><i class="fa fa-eye"></i> <span class="nav-label">Observation</span></a>
+                        <a href="<?php echo base_url()?>cont_obs/index"><i class="fa fa-eye"></i> <span class="nav-label">Observation</span></a>
                     </li>
                 <!-- End Corporate-->
 
@@ -178,7 +176,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="Welcome/Logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>

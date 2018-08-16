@@ -105,10 +105,7 @@
                         <a href="<?php echo base_url()?>cont_wwcr/index"><i class="fa fa-check"></i> <span class="nav-label">Interview</span></a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo base_url()?>cont_ondes/index"><i class="fa fa-user"></i> <span class="nav-label">On Desk</span></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url()?>observation/index"><i class="fa fa-eye"></i> <span class="nav-label">Observation</span></a>
+                        <a href="<?php echo base_url()?>cont_obs/index"><i class="fa fa-eye"></i> <span class="nav-label">Observation</span></a>
                     </li>
                 <!-- End Corporate-->
 
@@ -214,7 +211,7 @@
               <div class="">
                 <div class="page-title">
                   <div class="title_left">
-                    <h3><strong>ON</strong> Desk<!-- <small> Formulir asessment  <strong> karyawan </strong></small> --></h3>
+                    <h3><strong> Observation </strong>Culture Assessment<!-- <small> Formulir asessment  <strong> karyawan </strong></small> --></h3>
                   </div>
                 </div>
               </div>
@@ -223,39 +220,22 @@
         <div class="col-lg-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h5><strong>Daftar Kuesioner</strong> <!-- "PROGRAM SINCERITY" --></h5>
-                </div>
-                <div class="x-content">
-                  <form method="POST" action="<?php echo base_url();?>cont_ondes/nilai" role="form">
-                    <div class="row form-group">
-                      <div class="col col-md-3">
-                        <label for="text-input" class=" form-control-label">Input On-Desk UNIT</label>
-                      </div>
-                      <div class="col-12 col-md-9">
-                          <input type="text" id="text-input" name="input" placeholder="Input Nilai" class="form-control" required>
-                          <small class="form-text text-muted"></small>
-                      </div>
-                    </div>
-                    <div class="hr-line-dashed"></div>
-                      <button class="btn btn-primary pull-right" type="submit">
-                        <i class="fa fa-paper-plane"></i>   Submit
-                      </button>     
-                  </form>
+                    <h5><strong>Observation</strong> <!-- "PROGRAM SINCERITY" --></h5>
                 </div>
 
-                <!-- <div class="x-content">
+                <div class="x-content">
                     <form method="POST" action="<?php echo base_url();?>cont_ondes/nilai" role="form">
-                        <table class="table table-striped jambo_table bulk_action" > -->
+                        <table class="table table-striped jambo_table bulk_action" >
                         <!-- <table class="table table-striped table-bordered table-hover dataTables-example" > -->
-                            <!-- <thead>
+                            <thead>
                                 <tr>
-                                    <th><h5><center>No.</center></h5></th>
-                                    <th><h5><center>Kuesioner</center></h5></th>
+                                    <th><h5><center>Indikator</center></h5></th>
+                                    <th><h5><center>Metode</center></h5></th>
 
                                     <th style="width: 50%;">
                                         <h5><center>Penilaian</center></h5>
 
-                                    </th> -->
+                                    </th>
 
                                     <!--<th style="width: 7%;">
                                         <h5><center>Tidak Setuju</center></h5>
@@ -274,7 +254,7 @@
                                         <h5><center>Sangat Setuju</center></h5>
                                     </th> -->
 
-                                    <!-- </th> 
+                                    </th> 
 
                                 </tr>
                             </thead>
@@ -282,51 +262,50 @@
 
                             <tbody>
 
-                               <?php $n=0; $j=0; foreach($pertanyaan as $value) : $n++; ?>
-
-
+                                <?php $n=0; $j=0; foreach($pertanyaan as $value) : $n++; ?>                                
+                                
                                  <tr class="gradeX">
-                                    <td class="text-center" style="width: 5%;"><h5><?php echo $n; ?></h5></td>
-                                    <td style=" width: 45%"><h4><?php echo $value->pertanyaan ?></h4></td>
+                                    <td class="text-center" style="width: 25%;"><h5><?php echo $value->pertanyaan ?></h5></td>
+                                    <td style=" width: 25%"><h5><?php echo $value->metode ?></h5></td>
+                                    <!--style="width: 60%;"-->
 
                               <td class="six">
                                   <div class='vertical-align'>
                                     <div class='btns'>
                                       <label>
-                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='1'>
-                                          <span class='btn first'>Sangat <br>Tidak Setuju</span>
+                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='0'>
+                                          <span class='btn first'>0</span>
                                         </input>
                                       </label>
                                       <label>
-                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='2'>
-                                          <span class='btn'>Tidak Setuju</span>
+                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='10'>
+                                          <span class='btn'>10</span>
                                         </input>
                                       </label>
                                       <label>
-                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='3'>
-                                          <span class='btn'>Agak <br>Tidak Setuju</span>
+                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='20'>
+                                          <span class='btn'>20</span>
                                         </input>
                                       </label>
                                       <label>
-                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='4'>
-                                          <span class='btn'>Agak <br> Setuju</span>
+                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='30'>
+                                          <span class='btn'>30</span>
                                         </input>
                                       </label>
                                       <label>
-                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='5'>
-                                          <span class='btn'>Setuju</span>
+                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='40'>
+                                          <span class='btn'>40</span>
                                         </input>
                                       </label>
                                       <label>
-                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='6'>
-                                          <span class='btn last'>Sangat <br> Setuju</span>
+                                        <input name="<?php echo $id_kuesioner[$j]->id_kuesioner; ?>" type='radio' value='50'>
+                                          <span class='btn last'>50</span>
                                         </input>
                                       </label>
                                     </div>
                                   </td>
 
                                 </tr>
-
                                 <?php $j++; endforeach; ?>
 
                             </tbody>
@@ -338,7 +317,7 @@
                             </button>
                         </form>
 
-        </div> -->
+        </div>
     </div>
    </div>
     </div>
