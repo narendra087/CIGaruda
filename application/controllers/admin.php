@@ -38,13 +38,15 @@ class admin extends CI_Controller {
     $data['progreshead'] = $this->model_admin->progresHead();
     $data['progresbranch'] = $this->model_admin->progresBranch();
 
-    $bobot['bobot'] = $this->model_admin->bobot()->result();
-    foreach ($bobot['bobot'] as $b) {
-      $data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
-    }
-    foreach ($bobot['bobot'] as $a) {
-      $data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
-    }
+    //$bobot['bobot'] = $this->model_admin->bobot()->result();
+    // foreach ($bobot['bobot'] as $b) {
+    //   $data['leaderhead'] = $this->model_admin->leaderHead($b->bobot1,$b->bobot2,$b->bobot3,$b->bobot4,$b->bobot5,$b->bobot6);
+    // }
+    // foreach ($bobot['bobot'] as $a) {
+    //   $data['leaderbranch'] = $this->model_admin->leaderbranch($a->bobot1,$a->bobot2,$a->bobot3,$a->bobot4,$a->bobot5,$a->bobot6);
+    // }
+    $data['leaderhead'] = $this->model_admin->leaderHead();
+    $data['leaderbranch'] = $this->model_admin->leaderbranch();
     $data['programho'] = $this->model_user->program_unitho();
     $data['programjkt'] = $this->model_user->program_unitjkt();
     $data['programkal'] = $this->model_user->program_unitkal();

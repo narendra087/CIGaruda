@@ -119,16 +119,19 @@ class model_user extends CI_Model {
 			return array();
 		}
 	}
+	
+	// public function program_unitho()
+// 	select * from (SELECT * FROM cc_program a 
+// LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
+//            AS persen_realisasi,AVG(input_gap) 
+//            AS persen_gap FROM `cc_program_eval` a 
+//            JOIN cc_program_input b on a.input_detail_c=b.input_detail 
+//            GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
+//            GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='HO'
 
 	public function program_unitho() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='HO'");
+		$hasil = $this->db->query("SELECT a.* , nama_unit FROM (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi = 'HO') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit) a JOIN unit b ON a.unit = b.kode_unit");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -139,13 +142,7 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitjkt() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi!='HO' AND b.kode_lokasi!='SUBAM' AND b.kode_lokasi!='UPGAM' AND b.kode_lokasi!='MESAM'");
+		$hasil = $this->db->query("SELECT a.* , nama_unit FROM (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi != 'HO' AND lokasi!='SUBAM' AND lokasi!='UPGAM' AND lokasi!='MESAM') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit) a JOIN unit b ON a.unit = b.kode_unit");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -156,13 +153,7 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitkal() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='UPGAM'");
+		$hasil = $this->db->query("SELECT a.* , nama_unit FROM (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi='UPGAM') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit) a JOIN unit b ON a.unit = b.kode_unit");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -173,13 +164,7 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitsum() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='MESAM'");
+		$hasil = $this->db->query("SELECT a.* , nama_unit FROM (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi='MESAM') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit) a JOIN unit b ON a.unit = b.kode_unit");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -190,13 +175,7 @@ LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(inp
 
 	public function program_unitjaw() {
 		//Query mencari record berdasarkan ID
-		$hasil = $this->db->query("select * from (SELECT * FROM cc_program a 
-LEFT JOIN (SELECT input_user_c,input_detail_c,input_target,input_satuan, AVG(input_realisasi_) 
-           AS persen_realisasi,AVG(input_gap) 
-           AS persen_gap FROM `cc_program_eval` a 
-           JOIN cc_program_input b on a.input_detail_c=b.input_detail 
-           GROUP BY input_user_c)b on a.cc_detail = b.input_detail_c where a.status='Default' 
-           GROUP BY input_user_c ) a JOIN unit b ON a.input_user_c = b.kode_unit WHERE b.kode_lokasi='SUBAM'");
+		$hasil = $this->db->query("SELECT a.* , nama_unit FROM (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi='SUBAM' ) a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit) a JOIN unit b ON a.unit = b.kode_unit");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}

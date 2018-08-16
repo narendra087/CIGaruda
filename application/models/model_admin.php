@@ -198,7 +198,7 @@ class model_admin extends CI_Model {
 		}
 	}
 	public function progrescorporate(){
-		$hasil = $this->db->query("SELECT 'Corporate',AVG(a.input_realisasi_) AS progress FROM `cc_program_eval` a JOIN `cc_program` b on a.input_detail_c=b.cc_detail WHERE b.status='Default'");
+		$hasil = $this->db->query("SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'progress' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg ) a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode order by progress DESC");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -218,7 +218,7 @@ class model_admin extends CI_Model {
 	}
 
 	public function progresHead(){
-		$hasil = $this->db->query("SELECT 'HeadOffice',AVG(a.input_realisasi_) AS progress FROM (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b on a.input_detail_c=b.cc_detail WHERE b.status='Default')a RIGHT JOIN unit b on a.input_user_c = b.kode_unit where b.kode_lokasi='HO' GROUP BY b.kode_dir ORDER BY kode_dir DESC");
+		$hasil = $this->db->query("SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'progress' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi = 'HO') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode order by progress DESC");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -229,7 +229,7 @@ class model_admin extends CI_Model {
 
 
 	public function progresBranch(){
-		$hasil = $this->db->query("SELECT 'BranchOffice',AVG(a.input_realisasi_) AS progress FROM (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b on a.input_detail_c=b.cc_detail WHERE b.status='Default')a RIGHT JOIN unit b on a.input_user_c = b.kode_unit where b.kode_lokasi!='HO' GROUP BY b.kode_dir ORDER BY kode_dir DESC");
+		$hasil = $this->db->query("SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'progress' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi != 'HO') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode order by progress DESC");
 		if($hasil->num_rows() > 0){
 			return $hasil->result();
 		}
@@ -241,59 +241,78 @@ class model_admin extends CI_Model {
 	function bobot(){
 		return $this->db->get('bobot');
 	}
-
-
-	public function leaderHead($bobot1,$bobot2,$bobot3,$bobot4,$bobot5,$bobot6){
-		$havewarrior = $this->db->query("SELECT * , (b.SE+b.SW+b.ST+b.SM+b.SP+b.SN) AS 'Total' FROM (SELECT *, CASE WHEN a.metod IS NULL THEN 0 ELSE $bobot6 END AS 'SM', CASE WHEN a.positif IS NULL THEN 0 ELSE $bobot5 END AS 'SP', CASE WHEN a.negatif IS NULL THEN 0 ELSE $bobot4 END AS 'SN'  FROM (SELECT input_user_c,  count(input_metodologi) AS metod, count(input_reinforcement_positif) AS positif, count(input_reinforcement_negatif) AS negatif FROM `cc_program_eval` GROUP BY input_user_c) a RIGHT JOIN
- (SELECT b.*, CASE WHEN a.status IS NULL THEN 0 ELSE IF(a.status>0,$bobot3,0) END AS ST
-        FROM (SELECT unit, SUM(status_aktif) AS status FROM `baru_tim_implementasi_budaya` GROUP BY unit) a RIGHT JOIN 
-            (SELECT b.*, CASE WHEN a.status_aktif IS NULL THEN 0 ELSE $bobot2 END AS SW
-            FROM baru_warrior a RIGHT JOIN
-                (SELECT b.*,CASE WHEN AVG(a.input_realisasi_) IS NULL THEN 0 ELSE IF(AVG(a.input_realisasi_)>=75, $bobot1, 0) END AS SE FROM 
-                    (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b 
-                    on a.input_detail_c=b.cc_detail WHERE b.status='Default')a 
-                 RIGHT JOIN unit b on a.input_user_c = b.kode_unit 
-                 where b.kode_lokasi='HO' 
-                 GROUP BY b.kode_unit 
-                 ORDER BY AVG(a.input_realisasi_) DESC)b
-             on a.unit = b.kode_unit   
-             GROUP BY b.kode_unit) b
-        on a.unit = b.kode_unit) b
-     on a.input_user_c = b.kode_unit)b
-ORDER BY total DESC");
-		if($havewarrior->num_rows() > 0){
-			return $havewarrior->result();
+	public function leaderHead(){
+		$hasil = $this->db->query("SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi = 'HO') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit order by Total DESC");
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
 		}
 		else {
 			return array();
 		}
 	}
 
-	public function leaderBranch($bobot1,$bobot2,$bobot3,$bobot4,$bobot5,$bobot6){
-		$havewarrior = $this->db->query("SELECT * , (b.SE+b.SW+b.ST+b.SM+b.SP+b.SN) AS 'Total' FROM (SELECT *, CASE WHEN a.metod IS NULL THEN 0 ELSE $bobot6 END AS 'SM', CASE WHEN a.positif IS NULL THEN 0 ELSE $bobot5 END AS 'SP', CASE WHEN a.negatif IS NULL THEN 0 ELSE $bobot4 END AS 'SN'  FROM (SELECT input_user_c,  count(input_metodologi) AS metod, count(input_reinforcement_positif) AS positif, count(input_reinforcement_negatif) AS negatif FROM `cc_program_eval` GROUP BY input_user_c) a RIGHT JOIN
- (SELECT b.*, CASE WHEN a.status IS NULL THEN 0 ELSE IF(a.status>0,$bobot3,0) END AS ST
-        FROM (SELECT unit, SUM(status_aktif) AS status FROM `baru_tim_implementasi_budaya` GROUP BY unit) a RIGHT JOIN 
-            (SELECT b.*, CASE WHEN a.status_aktif IS NULL THEN 0 ELSE $bobot2 END AS SW
-            FROM baru_warrior a RIGHT JOIN
-                (SELECT b.*,CASE WHEN AVG(a.input_realisasi_) IS NULL THEN 0 ELSE IF(AVG(a.input_realisasi_)>=75, $bobot1, 0) END AS SE FROM 
-                    (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b 
-                    on a.input_detail_c=b.cc_detail WHERE b.status='Default')a 
-                 RIGHT JOIN unit b on a.input_user_c = b.kode_unit 
-                 where b.kode_lokasi!='HO' 
-                 GROUP BY b.kode_unit 
-                 ORDER BY AVG(a.input_realisasi_) DESC)b
-             on a.unit = b.kode_unit   
-             GROUP BY b.kode_unit) b
-        on a.unit = b.kode_unit) b
-     on a.input_user_c = b.kode_unit)b
-ORDER BY total DESC");
-		if($havewarrior->num_rows() > 0){
-			return $havewarrior->result();
+// 	public function leaderHead($bobot1,$bobot2,$bobot3,$bobot4,$bobot5,$bobot6){
+// 		$havewarrior = $this->db->query("SELECT * , (b.SE+b.SW+b.ST+b.SM+b.SP+b.SN) AS 'Total' FROM (SELECT *, CASE WHEN a.metod IS NULL THEN 0 ELSE $bobot6 END AS 'SM', CASE WHEN a.positif IS NULL THEN 0 ELSE $bobot5 END AS 'SP', CASE WHEN a.negatif IS NULL THEN 0 ELSE $bobot4 END AS 'SN'  FROM (SELECT input_user_c,  count(input_metodologi) AS metod, count(input_reinforcement_positif) AS positif, count(input_reinforcement_negatif) AS negatif FROM `cc_program_eval` GROUP BY input_user_c) a RIGHT JOIN
+//  (SELECT b.*, CASE WHEN a.status IS NULL THEN 0 ELSE IF(a.status>0,$bobot3,0) END AS ST
+//         FROM (SELECT unit, SUM(status_aktif) AS status FROM `baru_tim_implementasi_budaya` GROUP BY unit) a RIGHT JOIN 
+//             (SELECT b.*, CASE WHEN a.status_aktif IS NULL THEN 0 ELSE $bobot2 END AS SW
+//             FROM baru_warrior a RIGHT JOIN
+//                 (SELECT b.*,CASE WHEN AVG(a.input_realisasi_) IS NULL THEN 0 ELSE IF(AVG(a.input_realisasi_)>=75, $bobot1, 0) END AS SE FROM 
+//                     (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b 
+//                     on a.input_detail_c=b.cc_detail WHERE b.status='Default')a 
+//                  RIGHT JOIN unit b on a.input_user_c = b.kode_unit 
+//                  where b.kode_lokasi='HO' 
+//                  GROUP BY b.kode_unit 
+//                  ORDER BY AVG(a.input_realisasi_) DESC)b
+//              on a.unit = b.kode_unit   
+//              GROUP BY b.kode_unit) b
+//         on a.unit = b.kode_unit) b
+//      on a.input_user_c = b.kode_unit)b
+// ORDER BY total DESC");
+// 		if($havewarrior->num_rows() > 0){
+// 			return $havewarrior->result();
+// 		}
+// 		else {
+// 			return array();
+// 		}
+// 	}
+
+
+	public function leaderbranch(){
+		$hasil = $this->db->query("SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg WHERE lokasi != 'HO') a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit order by Total DESC");
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
 		}
 		else {
 			return array();
 		}
 	}
+
+// 	public function leaderBranch($bobot1,$bobot2,$bobot3,$bobot4,$bobot5,$bobot6){
+// 		$havewarrior = $this->db->query("SELECT * , (b.SE+b.SW+b.ST+b.SM+b.SP+b.SN) AS 'Total' FROM (SELECT *, CASE WHEN a.metod IS NULL THEN 0 ELSE $bobot6 END AS 'SM', CASE WHEN a.positif IS NULL THEN 0 ELSE $bobot5 END AS 'SP', CASE WHEN a.negatif IS NULL THEN 0 ELSE $bobot4 END AS 'SN'  FROM (SELECT input_user_c,  count(input_metodologi) AS metod, count(input_reinforcement_positif) AS positif, count(input_reinforcement_negatif) AS negatif FROM `cc_program_eval` GROUP BY input_user_c) a RIGHT JOIN
+//  (SELECT b.*, CASE WHEN a.status IS NULL THEN 0 ELSE IF(a.status>0,$bobot3,0) END AS ST
+//         FROM (SELECT unit, SUM(status_aktif) AS status FROM `baru_tim_implementasi_budaya` GROUP BY unit) a RIGHT JOIN 
+//             (SELECT b.*, CASE WHEN a.status_aktif IS NULL THEN 0 ELSE $bobot2 END AS SW
+//             FROM baru_warrior a RIGHT JOIN
+//                 (SELECT b.*,CASE WHEN AVG(a.input_realisasi_) IS NULL THEN 0 ELSE IF(AVG(a.input_realisasi_)>=75, $bobot1, 0) END AS SE FROM 
+//                     (SELECT * FROM `cc_program_eval` a JOIN `cc_program` b 
+//                     on a.input_detail_c=b.cc_detail WHERE b.status='Default')a 
+//                  RIGHT JOIN unit b on a.input_user_c = b.kode_unit 
+//                  where b.kode_lokasi!='HO' 
+//                  GROUP BY b.kode_unit 
+//                  ORDER BY AVG(a.input_realisasi_) DESC)b
+//              on a.unit = b.kode_unit   
+//              GROUP BY b.kode_unit) b
+//         on a.unit = b.kode_unit) b
+//      on a.input_user_c = b.kode_unit)b
+// ORDER BY total DESC");
+// 		if($havewarrior->num_rows() > 0){
+// 			return $havewarrior->result();
+// 		}
+// 		else {
+// 			return array();
+// 		}
+// 	}
 
 
 	public function warrior(){

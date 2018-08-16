@@ -113,26 +113,7 @@ include('connection/conn.php');
             </div>
 
 
-                  <div class="col-md-2 col-sm-2    col-xs-12">
-                  <div class="widget red-bg p-lg text-center">
-                  <?php
-                  $cc=mysqli_query($con, "SELECT * FROM cc_program where status= 'Default'");
-                  $count=mysqli_num_rows($cc);
-                  
-                  ?>
-                   <?php
-                  $cc2=mysqli_query($con, "SELECT * FROM cc_program where status IN ('Default', 'Active')");
-                  $count2=mysqli_num_rows($cc2);
-                  ?>
-                            <div class="m-b-md">
-                                <i class="fa fa-bell fa-4x"></i>
-                                <h1 class="m-xs"><?php echo $count?></h1>
-                                <h3 class="font-bold no-margins">
-                                    Culture Program Aktif
-                                </h3>
-                            </div>
-                        </div>  
-                </div>
+                
 
 
                 <div class="col-md-5 col-sm-5    col-xs-12">
@@ -160,7 +141,7 @@ include('connection/conn.php');
                               1
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderhead[0]->kode_unit; ?>
+                              <?php echo $leaderhead[0]->unit; ?>
                               </td>
                               <td style="text-align:center" >
                               <?php echo $leaderhead[0]->Total; ?> 
@@ -172,7 +153,7 @@ include('connection/conn.php');
                                 2
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderhead[1]->kode_unit; ?>
+                              <?php echo $leaderhead[1]->unit; ?>
                               </td>
                               <td style="text-align:center" >
                               <?php echo $leaderhead[1]->Total; ?>  
@@ -184,7 +165,7 @@ include('connection/conn.php');
                                 3
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderhead[2]->kode_unit; ?>
+                              <?php echo $leaderhead[2]->unit; ?>
                               </td>
                               <td style="text-align:center" >
                               <?php echo $leaderhead[2]->Total; ?>  
@@ -235,7 +216,7 @@ include('connection/conn.php');
                                                                 <?php echo $i+1; ?>
                                                                 </td>
                                                                 <td style="text-align:center" >
-                                                                <?php echo $leaderhead[$i]->kode_unit; ?>
+                                                                <?php echo $leaderhead[$i]->unit; ?>
                                                                 </td>
                                                                 <td style="text-align:center" >
                                                                 <?php echo $leaderhead[$i]->Total; ?> 
@@ -288,7 +269,7 @@ include('connection/conn.php');
                                 1
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderbranch[0]->kode_unit; ?>
+                              <?php echo $leaderbranch[0]->unit; ?>
                               </td>
                               <td style="text-align:center" >
                               <?php echo $leaderbranch[0]->Total; ?>  
@@ -300,7 +281,7 @@ include('connection/conn.php');
                                 2
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderbranch[1]->kode_unit; ?>  
+                              <?php echo $leaderbranch[1]->unit; ?>  
                               </td>
                               <td style="text-align:center" >
                               <?php echo $leaderbranch[1]->Total; ?>  
@@ -312,7 +293,7 @@ include('connection/conn.php');
                                 3
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderbranch[2]->kode_unit; ?>  
+                              <?php echo $leaderbranch[2]->unit; ?>  
                               </td>
                               <td style="text-align:center" >
                               <?php echo $leaderbranch[2]->Total; ?>  
@@ -368,7 +349,7 @@ include('connection/conn.php');
                                                                 <?php echo $i+1; ?>
                                                                 </td>
                                                                 <td style="text-align:center" >
-                                                                <?php echo $leaderbranch[$i]->kode_unit; ?>
+                                                                <?php echo $leaderbranch[$i]->unit; ?>
                                                                 </td>
                                                                 <td style="text-align:center" >
                                                                 <?php echo $leaderbranch[$i]->Total; ?> 
@@ -398,6 +379,7 @@ include('connection/conn.php');
 
 
                 <div class="col-md-12 col-sm-12    col-xs-12">
+                  <!-- head office -->
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Head Office</h2>
@@ -431,14 +413,14 @@ include('connection/conn.php');
                                                               
                                                                 <tr>
                                                                 <td style="text-align:left" >
-                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->input_user_c;?>">
-                                                                <b><?php echo $key->input_user_c; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
+                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->unit;?>">
+                                                                <b><?php echo $key->unit; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
                                                                 </td>
                                                                 <td style="text-align:center" >
                                                                 <i class="fa fa-check-circle" style="color:green"></i>
                                                                 </td>
                                                                 <td style="text-align:center" >
-                                                                <?php echo ceil($key->persen_realisasi); ?>%
+                                                                <?php echo ceil($key->Total); ?>%
                                                                 </td>
                                                               </tr>
 
@@ -447,14 +429,16 @@ include('connection/conn.php');
 
                         <?php 
                         $n=1;
-                        $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,input_user_c FROM ca_performance_upload LEFT JOIN cc_program_eval on ca_performance_upload.unit_name=cc_program_eval.input_user_c where ca_performance_upload.kode='1')a JOIN unit b on a.unit_name=b.kode_unit");
+                        $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,unit FROM ca_performance_upload a LEFT JOIN (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg ) a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit order by Total DESC) b on a.unit_name = b.unit where a.kode='1')a JOIN unit b on a.unit_name=b.kode_unit");
                         while ($row=mysqli_fetch_array($queries)) {
 
                           ?>                    
+
+                          <!-- SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,input_user_c FROM ca_performance_upload LEFT JOIN cc_program_eval on ca_performance_upload.unit_name=cc_program_eval.input_user_c where ca_performance_upload.kode='1')a JOIN unit b on a.unit_name=b.kode_unit -->
                            
 
                           <?php 
-                          if ($row['input_user_c']==null&&empty($row['input_user_c'])) {
+                          if ($row['unit']==null&&empty($row['unit'])) {
                             ?>
                             <tr style=" background:#f7f7f7">
                               <td><b><?php echo $row['unit_name'];?></b> (<?php echo $row['nama_unit'];?>)</td>
@@ -483,6 +467,7 @@ include('connection/conn.php');
 
 
             <div class="col-md-6 col-sm-6    col-xs-12">
+              <!-- jakarta open-->
             <div class="x_panel">
               <div class="x_title">
                 <h2>Jakarta Raya and <br>International Region</h2>
@@ -516,14 +501,14 @@ include('connection/conn.php');
                                                               
                                                                 <tr>
                                                                 <td style="text-align:left" >
-                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->input_user_c;?>">
-                                                                <b><?php echo $key->input_user_c; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
+                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->unit;?>">
+                                                                <b><?php echo $key->unit; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
                                                                 </td>
                                                                 <td style="text-align:center" >
                                                                 <i class="fa fa-check-circle" style="color:green"></i>
                                                                 </td>
                                                                 <td style="text-align:center" >
-                                                                <?php echo ceil($key->persen_realisasi); ?>%
+                                                                <?php echo ceil($key->Total); ?>%
                                                                 </td>
                                                               </tr>
 
@@ -533,12 +518,13 @@ include('connection/conn.php');
 
                     <?php 
                     $n=1;
-                    $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,input_user_c FROM ca_performance_upload LEFT JOIN cc_program_eval on ca_performance_upload.unit_name=cc_program_eval.input_user_c where ca_performance_upload.kode='5')a JOIN unit b on a.unit_name=b.kode_unit");
+              
+                    $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,unit FROM ca_performance_upload a LEFT JOIN (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg ) a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit order by Total DESC) b on a.unit_name = b.unit where a.kode='5')a JOIN unit b on a.unit_name=b.kode_unit");
                     while ($row=mysqli_fetch_array($queries)) {
 
                       ?>
                       <?php 
-                      if ($row['input_user_c']==null&&empty($row['input_user_c'])) {
+                      if ($row['unit']==null&&empty($row['unit'])) {
                         ?>
                         <tr style=" background:#f7f7f7">
                           <td><b><?php echo $row['unit_name'];?></b> (<?php echo $row['nama_unit'];?>)</td>
@@ -568,6 +554,7 @@ include('connection/conn.php');
             </div>
 
             <div class="col-md-6 col-sm-6    col-xs-12">
+              <!-- kalimantan open -->
             <div class="x_panel">
               <div class="x_title">
                 <h2>Kalimantan, Sulawesi, & <br>Papua Region</h2>
@@ -599,14 +586,14 @@ include('connection/conn.php');
                                                               
                                                                 <tr>
                                                                 <td style="text-align:left" >
-                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->input_user_c;?>">
-                                                                <b><?php echo $key->input_user_c; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
+                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->unit;?>">
+                                                                <b><?php echo $key->unit; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
                                                                 </td>
                                                                 <td style="text-align:center" >
                                                                 <i class="fa fa-check-circle" style="color:green"></i>
                                                                 </td>
                                                                 <td style="text-align:center" >
-                                                                <?php echo ceil($key->persen_realisasi); ?>%
+                                                                <?php echo ceil($key->Total); ?>%
                                                                 </td>
                                                               </tr>
 
@@ -615,12 +602,12 @@ include('connection/conn.php');
 
                     <?php 
                     $n=1;
-                    $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,input_user_c FROM ca_performance_upload LEFT JOIN cc_program_eval on ca_performance_upload.unit_name=cc_program_eval.input_user_c where ca_performance_upload.kode='4')a JOIN unit b on a.unit_name=b.kode_unit");
+                    $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,unit FROM ca_performance_upload a LEFT JOIN (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg ) a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit order by Total DESC) b on a.unit_name = b.unit where a.kode='4')a JOIN unit b on a.unit_name=b.kode_unit");
                     while ($row=mysqli_fetch_array($queries)) {
 
                       ?>
                       <?php 
-                      if ($row['input_user_c']==null&&empty($row['input_user_c'])) {
+                      if ($row['unit']==null&&empty($row['unit'])) {
                         ?>
                         <tr style=" background:#f7f7f7">
                           <td><b><?php echo $row['unit_name'];?></b> (<?php echo $row['nama_unit'];?>)</td>
@@ -727,6 +714,7 @@ include('connection/conn.php');
                 </div>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-12">
+                <!-- jawa bali open -->
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Jawa, Bali,<br>Nusa Tenggara Region </h2>
@@ -749,14 +737,14 @@ include('connection/conn.php');
                                                               
                                                                 <tr>
                                                                 <td style="text-align:left" >
-                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->input_user_c;?>">
-                                                                <b><?php echo $key->input_user_c; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
+                                                                <a href="<?php echo base_url()?>admin/progress_program/<?php echo $key->unit;?>">
+                                                                <b><?php echo $key->unit; ?> </b> (<?php echo $key->nama_unit; ?>) </a>
                                                                 </td>
                                                                 <td style="text-align:center" >
                                                                 <i class="fa fa-check-circle" style="color:green"></i>
                                                                 </td>
                                                                 <td style="text-align:center" >
-                                                                <?php echo ceil($key->persen_realisasi); ?>%
+                                                                <?php echo ceil($key->Total); ?>%
                                                                 </td>
                                                               </tr>
 
@@ -765,14 +753,14 @@ include('connection/conn.php');
 
                         <?php 
                         $n=1;
-                        $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,input_user_c FROM ca_performance_upload LEFT JOIN cc_program_eval on ca_performance_upload.unit_name=cc_program_eval.input_user_c where ca_performance_upload.kode='3')a JOIN unit b on a.unit_name=b.kode_unit");
+                        $queries=mysqli_query($con,"SELECT * FROM (SELECT DISTINCT(unit_name),id_ca,kode,unit FROM ca_performance_upload a LEFT JOIN (SELECT a.* , round(AVG(hasil_nilai_result)/6*bobot*100) as 'Total' FROM (SELECT a.* , id_construct , id_metode FROM (SELECT a.* , unit , lokasi FROM hasil_nilai a LEFT JOIN tb_pegawai b on a.nopeg = b.nopeg ) a LEFT JOIN tb_pertanyaan b on a.id_kuesioner = b.id_kuesioner) a left join metode b on a.id_metode = b.id_metode group by unit order by Total DESC) b on a.unit_name = b.unit where a.kode='3')a JOIN unit b on a.unit_name=b.kode_unit");
                         while ($row=mysqli_fetch_array($queries)) {
 
                           ?>
 
 
                           <?php 
-                          if ($row['input_user_c']==null&&empty($row['input_user_c'])) {
+                          if ($row['unit']==null&&empty($row['unit'])) {
                             ?>
                             <tr style=" background:#f7f7f7">
                               <td><b><?php echo $row['unit_name'];?></b> (<?php echo $row['nama_unit'];?>)</td>
