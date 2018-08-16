@@ -214,7 +214,7 @@
               <div class="">
                 <div class="page-title">
                   <div class="title_left">
-                    <h3><strong> Observation </strong>Culture Assessment<!-- <small> Formulir asessment  <strong> karyawan </strong></small> --></h3>
+                    <h3><strong>ON</strong> Desk<!-- <small> Formulir asessment  <strong> karyawan </strong></small> --></h3>
                   </div>
                 </div>
               </div>
@@ -225,12 +225,29 @@
                 <div class="x_title">
                     <h5><strong>Daftar Kuesioner</strong> <!-- "PROGRAM SINCERITY" --></h5>
                 </div>
-
                 <div class="x-content">
+                  <form method="POST" action="<?php echo base_url();?>cont_ondes/nilai" role="form">
+                    <div class="row form-group">
+                      <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Input On-Desk UNIT</label>
+                      </div>
+                      <div class="col-12 col-md-9">
+                          <input type="text" id="text-input" name="input" placeholder="Input Nilai" class="form-control" required>
+                          <small class="form-text text-muted"></small>
+                      </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                      <button class="btn btn-primary pull-right" type="submit">
+                        <i class="fa fa-paper-plane"></i>   Submit
+                      </button>     
+                  </form>
+                </div>
+
+                <!-- <div class="x-content">
                     <form method="POST" action="<?php echo base_url();?>cont_ondes/nilai" role="form">
-                        <table class="table table-striped jambo_table bulk_action" >
+                        <table class="table table-striped jambo_table bulk_action" > -->
                         <!-- <table class="table table-striped table-bordered table-hover dataTables-example" > -->
-                            <thead>
+                            <!-- <thead>
                                 <tr>
                                     <th><h5><center>No.</center></h5></th>
                                     <th><h5><center>Kuesioner</center></h5></th>
@@ -238,7 +255,7 @@
                                     <th style="width: 50%;">
                                         <h5><center>Penilaian</center></h5>
 
-                                    </th>
+                                    </th> -->
 
                                     <!--<th style="width: 7%;">
                                         <h5><center>Tidak Setuju</center></h5>
@@ -257,7 +274,7 @@
                                         <h5><center>Sangat Setuju</center></h5>
                                     </th> -->
 
-                                    </th> 
+                                    <!-- </th> 
 
                                 </tr>
                             </thead>
@@ -271,7 +288,6 @@
                                  <tr class="gradeX">
                                     <td class="text-center" style="width: 5%;"><h5><?php echo $n; ?></h5></td>
                                     <td style=" width: 45%"><h4><?php echo $value->pertanyaan ?></h4></td>
-                                    <!--style="width: 60%;"-->
 
                               <td class="six">
                                   <div class='vertical-align'>
@@ -322,7 +338,7 @@
                             </button>
                         </form>
 
-        </div>
+        </div> -->
     </div>
    </div>
     </div>
