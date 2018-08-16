@@ -112,10 +112,6 @@ include('connection/conn.php');
 
             </div>
 
-
-<<<<<<< HEAD
-                
-=======
                   <div class="col-md-2 col-sm-2    col-xs-12">
                   <div class="widget red-bg p-lg text-center">
                   <?php
@@ -136,7 +132,6 @@ include('connection/conn.php');
                             </div> -->
                         </div>  
                 </div>
->>>>>>> 39bd5a37d0def4b723a983a50423e9b408933c9a
 
 
                 <div class="col-md-5 col-sm-5    col-xs-12">
