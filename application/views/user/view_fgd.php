@@ -96,7 +96,7 @@
                         <a href="<?php echo base_url()?>kuesioner/index"><i class="fa fa-users"></i> <span class="nav-label">Questionaire</span></a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo base_url()?>cont_fgd/index"><i class="fa fa-question-circle"></i> <span class="nav-label">Fofum Group Discussion</span></a>
+                        <a href="<?php echo base_url()?>cont_fgd/index"><i class="fa fa-question-circle"></i> <span class="nav-label">Forum Group Discussion</span></a>
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>cont_ppt/index"><i class="fa fa-upload"></i> <span class="nav-label">Presentation</span></a>
@@ -106,6 +106,9 @@
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>cont_ondes/index"><i class="fa fa-user"></i> <span class="nav-label">On Desk</span></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url()?>observation/index"><i class="fa fa-eye"></i> <span class="nav-label">Observation</span></a>
                     </li>
                 <!-- End Corporate-->
 

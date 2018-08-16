@@ -14,11 +14,12 @@ class observation extends CI_Controller
 
     public function index()
     {
-        // $unit=$this->session->userdata('nama','nopeg');
-        // $data['id_kuesioner']  = $this->model_users->id_ondes();
-        // $data['pertanyaan']  = $this->model_users->list_ondes();
-        // $data['varconstruct']  = $this->model_users->type_construct();
-        $this->load->view('user/observation');
+        $unit=$this->session->userdata('nama','nopeg');
+        $data['id_kuesioner']  = $this->model_users->id_obs();
+        $data['pertanyaan']  = $this->model_users->list_obs();
+        // $data['metode']  = $this->model_users->list_metode_obs();
+        $data['varconstruct']  = $this->model_users->type_construct();
+        $this->load->view('user/observation', $data);
 
 
     // print_r($data['id_kuesioner']);

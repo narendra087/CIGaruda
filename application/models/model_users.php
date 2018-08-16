@@ -151,11 +151,47 @@ class Model_users extends CI_Model
 		}
 	}
 
+	public function id_obs()
+	{
+		//$this->db->order_by('status_kuesioner', 'ASC')
+		$hasil = $this->db->query("SELECT id_kuesioner FROM tb_pertanyaan WHERE id_metode = 'obs' ORDER BY id_kuesioner");
+		//$query = $this->db->get('kuisioner');
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		} else{
+			return "kosong";
+		}
+	}
+
 
 	public function list_ondes()
 	{
 		//$this->db->order_by('status_kuesioner', 'ASC')
 		$hasil = $this->db->query("SELECT pertanyaan FROM tb_pertanyaan WHERE id_metode='ondes' ");
+		//$query = $this->db->get('kuisioner');
+		if($hasil->num_rows() > 0){
+			return $hasil->result()	;
+		} else{
+			return "kosong";
+		}
+	}
+
+	public function list_obs()
+	{
+		//$this->db->order_by('status_kuesioner', 'ASC')
+		$hasil = $this->db->query("SELECT pertanyaan, metode FROM tb_pertanyaan WHERE id_metode='obs' ");
+		//$query = $this->db->get('kuisioner');
+		if($hasil->num_rows() > 0){
+			return $hasil->result()	;
+		} else{
+			return "kosong";
+		}
+	}
+
+	public function list_metode_obs()
+	{
+		//$this->db->order_by('status_kuesioner', 'ASC')
+		$hasil = $this->db->query("SELECT metode FROM tb_pertanyaan WHERE id_metode='obs' ");
 		//$query = $this->db->get('kuisioner');
 		if($hasil->num_rows() > 0){
 			return $hasil->result()	;

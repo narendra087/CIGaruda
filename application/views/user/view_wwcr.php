@@ -107,6 +107,9 @@
                     <li>
                         <a href="<?php echo base_url()?>cont_ondes/index"><i class="fa fa-user"></i> <span class="nav-label">On Desk</span></a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url()?>observation/index"><i class="fa fa-eye"></i> <span class="nav-label">Observation</span></a>
+                    </li>
                 <!-- End Corporate-->
 
                       <!-- Direktorat-->
