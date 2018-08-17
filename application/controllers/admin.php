@@ -85,7 +85,13 @@ class admin extends CI_Controller {
      // $id_pertanyaan = $this->uri->segment(3);
      //    $data['product'] = $this->model_users->product($id_pertanyaan)->row_array();
   }
-
+    
+    public function progress_program($id){
+        $data['id'] = $id;
+        $this->load->view('header2');
+        $this->load->view('admin/dashboards', $data);
+        $this->load->view('footer');
+    }
 
   public function edit_presentation()
   {

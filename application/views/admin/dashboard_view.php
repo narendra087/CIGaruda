@@ -112,6 +112,7 @@ include('connection/conn.php');
 
             </div>
 
+<!--
                   <div class="col-md-2 col-sm-2    col-xs-12">
                   <div class="widget red-bg p-lg text-center">
                   <?php
@@ -123,18 +124,19 @@ include('connection/conn.php');
                   $cc2=mysqli_query($con, "SELECT * FROM cc_program where status IN ('Default', 'Active')");
                   $count2=mysqli_num_rows($cc2);
                   ?>
-                            <!-- <div class="m-b-md">
+                             <div class="m-b-md">
                                 <i class="fa fa-bell fa-4x"></i>
                                 <h1 class="m-xs"><?php echo $count?></h1>
                                 <h3 class="font-bold no-margins">
                                     Culture Program Aktif
                                 </h3>
-                            </div> -->
+                            </div> 
                         </div>  
                 </div>
+-->
 
 
-                <div class="col-md-5 col-sm-5    col-xs-12">
+                <div class="col-md-6 col-sm-6    col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2 style='font-weight: bold'>Top 3 Head Office</h2>
@@ -262,7 +264,7 @@ include('connection/conn.php');
 
 
 
-              <div class="col-md-5 col-sm-5    col-xs-12">
+              <div class="col-md-6 col-sm-6    col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2 style='font-weight: bold'>Top 3 Branch Office</h2>
@@ -299,10 +301,10 @@ include('connection/conn.php');
                                 2
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderbranch[1]->unit; ?>  
+                              <?php echo $leaderbranch[0]->unit; ?>  
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderbranch[1]->Total; ?>  
+                              <?php echo $leaderbranch[0]->Total; ?>  
                               </td>
                             </tr>
                             
@@ -311,10 +313,10 @@ include('connection/conn.php');
                                 3
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderbranch[2]->unit; ?>  
+                              <?php echo $leaderbranch[0]->unit; ?>  
                               </td>
                               <td style="text-align:center" >
-                              <?php echo $leaderbranch[2]->Total; ?>  
+                              <?php echo $leaderbranch[0]->Total; ?>  
                               </td>
                             </tr>
 

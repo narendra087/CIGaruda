@@ -320,7 +320,11 @@
         </div>
     </div>
    </div>
+    <div align="center">   
+        <img src="<?php echo base_url();?>/indikator.png" />
     </div>
+    </div>
+    
 
 <!-- footer content -->
         <footer style="margin-left: 0 !important;">

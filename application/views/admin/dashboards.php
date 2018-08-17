@@ -8,7 +8,7 @@
 
                 <div class="">
                   <div class="col-md-6">
-                    <h3>Direktorat JKTDC <small></small></h3> <!-- diantara <small> ini bisa di isi teks -->
+                    <h3>Direktorat <?php echo $id; ?> <small></small></h3> <!-- diantara <small> ini bisa di isi teks -->
                   </div>
                 </div>
 
@@ -44,19 +44,48 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-				  <h3></h3>
-					 <li><a>LA : Leadership Action  </a></li>
+				  <li><a>LA : Leadership Action  </a></li>
 					 <h3></h3>
 					 <li><a>WP : Warrior Performance</a></li>
 					  <h3></h3>
-					 <li><a>PE : Program Effectiveness</a></li>
+					 <li><a>PI : Program impact</a></li>
+<!--
 					  <h3></h3>
 					 <li><a>IE : Impact Evaluation</a></li>
+-->
                
                 </div>
               </div>
               
-              <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Progress</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                    <br>
+				  <h3 align=center> 0% </h3>
+					  <br>
+               
+                </div>
+              </div>
+              
+              <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Nilai On - Desk</h2>
@@ -77,20 +106,15 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-				  <h3></h3>
-					 <li><a>LA : Leadership Action  </a></li>
-					 <h3></h3>
-					 <li><a>WP : Warrior Performance</a></li>
-					  <h3></h3>
-					 <li><a>PE : Program Effectiveness</a></li>
-					  <h3></h3>
-					 <li><a>IE : Impact Evaluation</a></li>
+                    <br>
+				  <h3 align=center> 0% </h3>
+					  <br>
                
                 </div>
               </div>
               
 		    <!-- chart pertama -->
-			<div class="col-md-6 col-sm-6 col-xs-12">
+			<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Bar Chart : 4 Dimensi <small>Sessions</small></h2>
@@ -117,6 +141,7 @@
                   </div>
                 </div>
               </div>
+<!--
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -143,10 +168,12 @@
                   </div>
                 </div>
               </div>
+-->
 			   <!-- batas akhir chart pertama -->
 
 			  <!-- chart kedua -->
 
+<!--
 			 <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -173,6 +200,8 @@
                   </div>
                 </div>
               </div>
+-->
+<!--
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -199,10 +228,12 @@
                   </div>
                 </div>
               </div>
+-->
 			   <!-- batas akhir chart kedua -->
 
 			   <!-- chart ketiga -->
 
+<!--
 			 <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -255,10 +286,12 @@
                   </div>
                 </div>
               </div>
+-->
 			   <!-- batas akhir chart ketiga -->
 
 			    <!-- chart keempat -->
 
+<!--
 			 <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -311,10 +344,12 @@
                   </div>
                 </div>
               </div>
+-->
 			   <!-- batas akhir chart keempat -->
 
 			   <!-- chart keelima -->
 
+<!--
 			 <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -367,6 +402,7 @@
                   </div>
                 </div>
               </div>
+-->
 			   <!-- batas akhir chart kelima -->
 
 
